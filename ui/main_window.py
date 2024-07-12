@@ -1,0 +1,90 @@
+import sys
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QGroupBox, QApplication
+from ui.styles import styles
+from ui.components import create_button
+from views.arrangements_view import ArrangementsView
+from views.queue_stacks_view import QueueStacksView
+from views.lists_view import ListsView
+from views.trees_view import TreesView
+
+class MainWindow(QWidget):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle('Interfaz de Ordenamiento y Estructuras de Datos')
+        self.setGeometry(100, 100, 1200, 800)
+
+        # Layout principal
+        main_layout = QHBoxLayout(self)
+
+        # Barra lateral
+        sidebar_layout = QVBoxLayout()
+        main_layout.addLayout(sidebar_layout, 1)
+
+        # Crear el QGroupBox para el sidebar
+        sidebar_box = QGroupBox()
+        sidebar_box_layout = QVBoxLayout(sidebar_box)
+
+        # Botones del sidebar
+        sidebar_box_layout.addWidget(create_button('Ordenamientos', self.show_arrangements_view))
+        sidebar_box_layout.addWidget(create_button('Pilas y Colas', self.show_queue_stacks_view))
+        sidebar_box_layout.addWidget(create_button('Listas', self.show_lists_view))
+        sidebar_box_layout.addWidget(create_button('Árboles', self.show_trees_view))
+
+        sidebar_layout.addWidget(sidebar_box)
+
+        # Área principal dinámica
+        self.main_area_layout = QVBoxLayout()
+        main_layout.addLayout(self.main_area_layout, 3)
+
+        # Inicializar las vistas
+        self.arrangements_view = ArrangementsView()
+        self.queue_stacks_view = QueueStacksView()
+        self.lists_view = ListsView()
+        self.trees_view = TreesView()
+
+        # Añadir las vistas al área principal, pero ocultarlas inicialmente
+        self.main_area_layout.addWidget(self.arrangements_view)
+        self.main_area_layout.addWidget(self.queue_stacks_view)
+        self.main_area_layout.addWidget(self.lists_view)
+        self.main_area_layout.addWidget(self.trees_view)
+        self.arrangements_view.hide()
+        self.queue_stacks_view.hide()
+        self.lists_view.hide()
+        self.trees_view.hide()
+
+        # Aplicar estilos CSS
+        self.apply_styles()
+
+    def apply_styles(self):
+        self.setStyleSheet(styles)
+
+    def show_arrangements_view(self):
+        self.hide_all_views()
+        self.arrangements_view.show()
+
+    def show_queue_stacks_view(self):
+        self.hide_all_views()
+        self.queue_stacks_view.show()
+
+    def show_lists_view(self):
+        self.hide_all_views()
+        self.lists_view.show()
+
+    def show_trees_view(self):
+        self.hide_all_views()
+        self.trees_view.show()
+
+    def hide_all_views(self):
+        self.arrangements_view.hide()
+        self.queue_stacks_view.hide()
+        self.lists_view.hide()
+        self.trees_view.hide()
+
+    def no_op(self):
+        pass
+
+app = QApplication(sys.argv)
+window = MainWindow()
+window.show()
+sys.exit(app.exec())
