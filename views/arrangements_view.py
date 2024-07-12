@@ -10,7 +10,7 @@ from scripts.sortings.sorting_algorithms import (
     heap_sort,
     counting_sort,
     radix_sort,
-    quick_sort_wrapper  # Importar la función de envoltura
+    quick_sort_wrapper
 )
 
 class ArrangementsView(QWidget):
@@ -19,7 +19,7 @@ class ArrangementsView(QWidget):
 
         layout = QVBoxLayout(self)
 
-        # Botones "Datos Aleatorios" y "Ordenar"
+        # ? Botones "Datos Aleatorios" y "Ordenar"
         buttons_layout = QHBoxLayout()
         self.input_type_combo = QComboBox()
         self.input_type_combo.addItems([
@@ -37,18 +37,18 @@ class ArrangementsView(QWidget):
 
         layout.addLayout(buttons_layout)
 
-        # Input para datos
+        # ? Input para datos
         self.input_button = create_button('Seleccionar Archivo', self.load_data)
         self.input_button.setVisible(False)
         layout.addWidget(self.input_button)
 
-        # Campo de texto para ingresar datos manualmente
+        # ? Campo de texto para ingresar datos manualmente
         self.manual_input = QTextEdit()
         self.manual_input.setVisible(False)
         self.manual_input.setMinimumHeight(30)
         layout.addWidget(self.manual_input)
 
-        # Output de datos
+        # ? Output de datos
         self.unsorted_data_label = QLabel('Números Desordenados')
         self.unsorted_data_label.setVisible(False)
         layout.addWidget(self.unsorted_data_label)
@@ -70,7 +70,7 @@ class ArrangementsView(QWidget):
         self.sorted_data.setMinimumHeight(150)
         layout.addWidget(self.sorted_data)
 
-        # ComboBox de selección de algoritmos en el área dinámica
+        # ? ComboBox de selección de algoritmos en el área dinámica
         self.sort_combo = QComboBox()
         self.sort_combo.addItems([
             'Bubble Sort',
@@ -88,7 +88,6 @@ class ArrangementsView(QWidget):
         self.setLayout(layout)
 
     def update_input_area(self):
-        # Limpiar campos de texto y labels
         self.clear_fields()
         
         input_type = self.input_type_combo.currentText()
@@ -151,7 +150,7 @@ class ArrangementsView(QWidget):
         else:
             data_text = self.unsorted_data.toPlainText().strip()
         
-        # Validar y limpiar la entrada de datos
+        # ? Validar y limpiar la entrada de datos
         if not data_text:
             self.sorted_data.setText('No se encontraron datos para ordenar')
             self.sorted_data.setVisible(True)
@@ -181,7 +180,7 @@ class ArrangementsView(QWidget):
         elif self.sort_combo.currentText() == 'Radix Sort':
             sorted_data = radix_sort(data)
         elif self.sort_combo.currentText() == 'Quick Sort':
-            sorted_data = quick_sort_wrapper(data)  # Usar la función de envoltura
+            sorted_data = quick_sort_wrapper(data)
         
         self.sorted_data.setText(', '.join(map(str, sorted_data)))
         self.sorted_data.setVisible(True)

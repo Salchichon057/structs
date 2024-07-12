@@ -16,24 +16,23 @@ class MainWindow(QWidget):
         self.setGeometry(100, 100, 1200, 800)
         self.setWindowIcon(QIcon('./assets/icon.png'))
         
-        # Layout principal
+        # ? Layout principal
         main_layout = QHBoxLayout(self)
 
-        # Barra lateral
+        # ? Barra lateral
         sidebar_layout = QVBoxLayout()
         main_layout.addLayout(sidebar_layout, 1)
 
-        # Crear el QGroupBox para el sidebar
+        # ? Crear el QGroupBox para el sidebar
         sidebar_box = QGroupBox()
         sidebar_box_layout = QVBoxLayout(sidebar_box)
 
-        # Botones del sidebar
+        # ? Botones del sidebar
         sidebar_box_layout.addWidget(create_button('Ordenamientos', self.show_arrangements_view))
         sidebar_box_layout.addWidget(create_button('Pilas y Colas', self.show_queue_stacks_view))
         sidebar_box_layout.addWidget(create_button('Listas', self.show_lists_view))
         sidebar_box_layout.addWidget(create_button('Árboles', self.show_trees_view))
 
-        # Un espaciador que ocupa el espacio restante
         spacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
         sidebar_box_layout.addItem(spacer)
 
@@ -47,17 +46,17 @@ class MainWindow(QWidget):
             }
         """)
 
-        # Área principal dinámica
+        # ? Área principal dinámica
         self.main_area_layout = QVBoxLayout()
         main_layout.addLayout(self.main_area_layout, 4)
 
-        # Inicializar las vistas
+        # ? Inicializar las vistas
         self.arrangements_view = ArrangementsView()
         self.queue_stacks_view = QueueStacksView()
         self.lists_view = ListsView()
         self.trees_view = TreesView()
 
-        # Añadir las vistas al área principal, pero ocultarlas inicialmente
+        # ? Añadir las vistas al área principal, pero ocultarlas inicialmente
         self.main_area_layout.addWidget(self.arrangements_view)
         self.main_area_layout.addWidget(self.queue_stacks_view)
         self.main_area_layout.addWidget(self.lists_view)
@@ -67,7 +66,7 @@ class MainWindow(QWidget):
         self.lists_view.hide()
         self.trees_view.hide()
 
-        # Aplicar estilos CSS
+        # ? Aplicar estilos CSS
         self.apply_styles()
 
     def apply_styles(self):

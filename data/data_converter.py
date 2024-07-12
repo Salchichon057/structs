@@ -1,9 +1,7 @@
 import pandas as pd
 
+# ? Convierte el contenido de un archivo .xlsx a una lista de números.
 def convert_xlsx_to_list(file_path):
-    """
-    Convierte el contenido de un archivo .xlsx a una lista de números.
-    """
     try:
         df = pd.read_excel(file_path)
         data = df.iloc[:, 0].dropna().tolist()
@@ -12,10 +10,8 @@ def convert_xlsx_to_list(file_path):
         print(f"Error al convertir archivo .xlsx: {e}")
         return []
 
+# ? Convierte el contenido de un archivo .txt a una lista de números.
 def convert_txt_to_list(file_path):
-    """
-    Convierte el contenido de un archivo .txt a una lista de números.
-    """
     try:
         with open(file_path, 'r') as file:
             data = file.read()
