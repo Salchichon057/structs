@@ -1,12 +1,12 @@
 import sys
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QGroupBox, QApplication, QSpacerItem, QSizePolicy
-from PyQt6.QtGui import QIcon  # Importar QIcon desde PyQt6.QtGui
+from PyQt6.QtGui import QIcon
 from ui.styles import styles
 from ui.components import create_button
 from views.arrangements_view import ArrangementsView
 from views.queue_stacks_view import QueueStacksView
-from views.lists_view import ListsView
 from views.trees_view import TreesView
+from views.searchs_view import SearchsView
 
 class MainWindow(QWidget):
     def __init__(self):
@@ -30,8 +30,8 @@ class MainWindow(QWidget):
         # ? Botones del sidebar
         sidebar_box_layout.addWidget(create_button('Ordenamientos', self.show_arrangements_view))
         sidebar_box_layout.addWidget(create_button('Pilas y Colas', self.show_queue_stacks_view))
-        sidebar_box_layout.addWidget(create_button('Listas', self.show_lists_view))
         sidebar_box_layout.addWidget(create_button('Árboles', self.show_trees_view))
+        sidebar_box_layout.addWidget(create_button('Búsquedas', self.show_searchs_view))
 
         spacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
         sidebar_box_layout.addItem(spacer)
@@ -53,18 +53,18 @@ class MainWindow(QWidget):
         # ? Inicializar las vistas
         self.arrangements_view = ArrangementsView()
         self.queue_stacks_view = QueueStacksView()
-        self.lists_view = ListsView()
         self.trees_view = TreesView()
+        self.searchs_view = SearchsView()
 
         # ? Añadir las vistas al área principal, pero ocultarlas inicialmente
         self.main_area_layout.addWidget(self.arrangements_view)
         self.main_area_layout.addWidget(self.queue_stacks_view)
-        self.main_area_layout.addWidget(self.lists_view)
         self.main_area_layout.addWidget(self.trees_view)
+        self.main_area_layout.addWidget(self.searchs_view)
         self.arrangements_view.hide()
         self.queue_stacks_view.hide()
-        self.lists_view.hide()
         self.trees_view.hide()
+        self.searchs_view.hide()
 
         # ? Aplicar estilos CSS
         self.apply_styles()
@@ -80,19 +80,19 @@ class MainWindow(QWidget):
         self.hide_all_views()
         self.queue_stacks_view.show()
 
-    def show_lists_view(self):
-        self.hide_all_views()
-        self.lists_view.show()
-
     def show_trees_view(self):
         self.hide_all_views()
         self.trees_view.show()
 
+    def show_searchs_view(self):
+        self.hide_all_views()
+        self.searchs_view.show()
+
     def hide_all_views(self):
         self.arrangements_view.hide()
         self.queue_stacks_view.hide()
-        self.lists_view.hide()
         self.trees_view.hide()
+        self.searchs_view.hide()
 
     def no_op(self):
         pass
