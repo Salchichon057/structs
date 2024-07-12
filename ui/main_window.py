@@ -1,5 +1,6 @@
 import sys
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QGroupBox, QApplication
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QGroupBox, QApplication, QSpacerItem, QSizePolicy
+from PyQt6.QtGui import QIcon  # Importar QIcon desde PyQt6.QtGui
 from ui.styles import styles
 from ui.components import create_button
 from views.arrangements_view import ArrangementsView
@@ -11,9 +12,10 @@ class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle('Interfaz de Ordenamiento y Estructuras de Datos')
+        self.setWindowTitle('Ordenamiento y Estructuras de Datos')
         self.setGeometry(100, 100, 1200, 800)
-
+        self.setWindowIcon(QIcon('./assets/icon.png'))
+        
         # Layout principal
         main_layout = QHBoxLayout(self)
 
@@ -31,11 +33,23 @@ class MainWindow(QWidget):
         sidebar_box_layout.addWidget(create_button('Listas', self.show_lists_view))
         sidebar_box_layout.addWidget(create_button('Árboles', self.show_trees_view))
 
+        # Un espaciador que ocupa el espacio restante
+        spacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        sidebar_box_layout.addItem(spacer)
+
         sidebar_layout.addWidget(sidebar_box)
+        
+        sidebar_box.setStyleSheet("""
+            QGroupBox {
+                background-color: #fff;
+                border: 1px solid #d0d0d0;
+                border-radius: 5px; /* Radio del borde para esquinas redondeadas */
+            }
+        """)
 
         # Área principal dinámica
         self.main_area_layout = QVBoxLayout()
-        main_layout.addLayout(self.main_area_layout, 3)
+        main_layout.addLayout(self.main_area_layout, 4)
 
         # Inicializar las vistas
         self.arrangements_view = ArrangementsView()
