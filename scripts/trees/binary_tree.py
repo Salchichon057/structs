@@ -22,16 +22,17 @@ class BinaryTree:
             return
 
         new_node = TreeNode(value)
-        self.values.add(value)
 
         if side.lower() == "left":
             if parent_node.left is None:
                 parent_node.left = new_node
+                self.values.add(value)
             else:
                 self.show_error("Error: El nodo izquierdo ya está ocupado", parent_widget)
         elif side.lower() == "right":
             if parent_node.right is None:
                 parent_node.right = new_node
+                self.values.add(value)
             else:
                 self.show_error("Error: El nodo derecho ya está ocupado", parent_widget)
         else:

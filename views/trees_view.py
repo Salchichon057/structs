@@ -73,7 +73,7 @@ class TreesView(QWidget):
             side, ok = QInputDialog.getItem(self, "Lado del Nodo", "Seleccione el lado:", ["left", "right"], 0, False)
             if not ok:
                 return
-            self.tree.insert(parent_node, side, value)
+            self.tree.insert(parent_node, side, value, self)
 
         self.redraw_tree()
 
@@ -83,7 +83,7 @@ class TreesView(QWidget):
             if value not in self.tree.values:
                 self.show_error(f"Error: El nodo con valor {value} no existe")
                 return
-            self.tree.delete_node(value)
+            self.tree.delete_node(value, self)
             self.redraw_tree()
 
     def clear_tree(self):
