@@ -22,10 +22,6 @@ class TreesView(QWidget):
         self.add_button.clicked.connect(self.add_node)
         button_layout.addWidget(self.add_button)
 
-        self.delete_button = QPushButton('Eliminar Nodo', self)
-        self.delete_button.clicked.connect(self.delete_node)
-        button_layout.addWidget(self.delete_button)
-
         self.clear_button = QPushButton('Limpiar Árbol', self)
         self.clear_button.clicked.connect(self.clear_tree)
         button_layout.addWidget(self.clear_button)
