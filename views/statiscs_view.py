@@ -62,7 +62,13 @@ class StatisticsView(QWidget):
             self.load_button.setVisible(False)
 
     def generate_random_data(self):
-        random_data = np.random.randint(1, 100, size=20).tolist()
+        size = 20
+        random_data = np.random.randint(1, 100, size= size - 3).tolist()
+        repeated_value = np.random.choice(random_data)
+        random_data.extend([repeated_value, repeated_value, repeated_value])
+        
+        np.random.shuffle(random_data)
+        
         self.input_area.setText(', '.join(map(str, random_data)))
 
     def load_data_from_file(self):

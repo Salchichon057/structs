@@ -3,7 +3,13 @@ import numpy as np
 def calculate_statistics(data):
     mean = np.mean(data)
     median = np.median(data)
-    mode = np.unique(data)[np.argmax(np.unique(data, return_counts=True)[1])]
+    
+    values, counts = np.unique(data, return_counts=True)
+    if np.max(counts) > 1:
+        mode = values[np.argmax(counts)]
+    else:
+        mode = 'No hay moda'
+    
     range_ = np.ptp(data)
     variance = np.var(data)
     std_deviation = np.std(data)
