@@ -80,7 +80,8 @@ class TreesView(QWidget):
     def delete_node(self):
         value, ok = QInputDialog.getInt(self, "Eliminar Nodo", "Ingrese el valor del nodo a eliminar:")
         if ok:
-            if not self.find_node(self.tree.root, value):
+            node = self.find_node(self.tree.root, value)
+            if not node:
                 self.show_error(f"Error: El nodo con valor {value} no existe")
                 return
             self.tree.delete_node(value, self)
