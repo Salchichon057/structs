@@ -1,6 +1,7 @@
 import sys
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QGroupBox, QApplication, QSpacerItem, QSizePolicy
-from PyQt6.QtGui import QIcon
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QGroupBox, QApplication, QSpacerItem, QSizePolicy, QLabel
+from PyQt6.QtGui import QIcon, QPixmap, QPainter, QColor
+from PyQt6.QtCore import Qt
 from ui.styles import styles
 from ui.components import create_button
 from views.arrangements_view import ArrangementsView
@@ -39,6 +40,13 @@ class MainWindow(QWidget):
 
         spacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
         sidebar_box_layout.addItem(spacer)
+        
+        # Agregar una imagen que es mi logo de la universidad en el sidebar
+        self.logo = QLabel()
+        self.logo.setPixmap(self.create_non_transparent_pixmap('./assets/logo.png', 200, 200))
+        self.logo.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.logo.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
+        sidebar_box_layout.addWidget(self.logo)
 
         sidebar_layout.addWidget(sidebar_box)
 
@@ -109,6 +117,17 @@ class MainWindow(QWidget):
         
     def capture_screen(self):
         save_screenshot(self)
+        
+    def create_non_transparent_pixmap(self, file_path, width, height):
+        pixmap = QPixmap(file_path)
+        non_transparent_pixmap = QPixmap(width, height)
+        non_transparent_pixmap.fill(QColor("white"))
+
+        painter = QPainter(non_transparent_pixmap)
+        painter.drawPixmap(0, 0, pixmap.scaled(width, height, aspectRatioMode=Qt.AspectRatioMode.KeepAspectRatio, transformMode=Qt.TransformationMode.SmoothTransformation))
+        painter.end()
+
+        return non_transparent_pixmap
 
 app = QApplication(sys.argv)
 window = MainWindow()
