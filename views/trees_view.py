@@ -11,12 +11,12 @@ class TreesView(QWidget):
         layout = QVBoxLayout(self)
         self.setLayout(layout)
 
-        # Crear figura de matplotlib
+        # * Crear figura de matplotlib
         self.figure = Figure()
         self.canvas = FigureCanvas(self.figure)
         layout.addWidget(self.canvas)
 
-        # Crear botones
+        # * Crear botones
         button_layout = QHBoxLayout()
         self.add_button = QPushButton('Agregar Nodo', self)
         self.add_button.clicked.connect(self.add_node)
@@ -40,11 +40,11 @@ class TreesView(QWidget):
 
         layout.addLayout(button_layout)
 
-        # Crear etiquetas para mostrar información
+        # * Crear etiquetas para mostrar información
         self.info_label = QLabel("")
         layout.addWidget(self.info_label)
 
-        # Crear el árbol binario vacío
+        # * Crear el árbol binario vacío
         self.tree = BinaryTree()
 
         self.ax = self.figure.add_subplot(111)

@@ -19,12 +19,12 @@ def binary_search_all(arr, target):
         mid = (left + right) // 2
         if arr[mid] == target:
             result.append(mid)
-            # Buscar a la izquierda
+            # ? Buscar a la izquierda
             l, r = mid - 1, mid + 1
             while l >= 0 and arr[l] == target:
                 result.append(l)
                 l -= 1
-            # Buscar a la derecha
+            # ? Buscar a la derecha
             while r < len(arr) and arr[r] == target:
                 result.append(r)
                 r += 1

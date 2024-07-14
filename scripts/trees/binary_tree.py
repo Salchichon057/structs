@@ -10,7 +10,7 @@ class TreeNode:
 class BinaryTree:
     def __init__(self):
         self.root = None
-        self.values = set()  # Almacenar valores únicos
+        self.values = set() # ! Almacenar valores únicos para evitar duplicados
 
     def insert(self, parent_node, side, value, parent_widget=None):
         if parent_node is None:
