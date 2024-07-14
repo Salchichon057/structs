@@ -150,7 +150,7 @@ class ArrangementsView(QWidget):
         # Mezcla de números y caracteres
         random_data = ', '.join(
             random.choice([str(random.randint(1, 100)), random.choice(string.ascii_letters)])
-            for _ in range(10)
+            for _ in range(20)
         )
         self.unsorted_data.setText(random_data)
         self.unsorted_data.setReadOnly(True)
@@ -239,3 +239,7 @@ class ArrangementsView(QWidget):
         error_dialog.setText(message)
         error_dialog.setWindowTitle("Error")
         error_dialog.exec()
+
+# TODO Implementar la funcionalidad de guardar los datos ordenados en un archivo excel, con un botón "Descargar Datos"
+# TODO Implementar combobox para seleccionar el tipo de datos en aleatorio GENERAR (numérico, alfabético, mezclado)
+# TODO Opciones para aleatorio FORMA DE GENERAR (Primos y primos únicos, defaul())

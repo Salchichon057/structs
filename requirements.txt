@@ -1,6 +1,5 @@
 numpy
 pandas
 matplotlib
-openpyxl
 PyQt6
-qtawesome
+networkx
