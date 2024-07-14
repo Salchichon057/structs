@@ -9,6 +9,7 @@ from views.queue_stacks_view import QueueStacksView
 from views.trees_view import TreesView
 from views.searchs_view import SearchsView
 from views.statiscs_view import StatisticsView
+from views.about_view import AboutView
 from data.data_saver import save_screenshot
 
 class MainWindow(QWidget):
@@ -36,6 +37,7 @@ class MainWindow(QWidget):
         sidebar_box_layout.addWidget(create_button('Árboles', self.show_trees_view))
         sidebar_box_layout.addWidget(create_button('Búsquedas', self.show_searchs_view))
         sidebar_box_layout.addWidget(create_button('Estadística Descriptiva', self.show_statistics_view))
+        sidebar_box_layout.addWidget(create_button('Nosotros', self.show_about_view))
         sidebar_box_layout.addWidget(create_button('Capturar Pantalla', self.capture_screen))
 
         spacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
@@ -68,6 +70,7 @@ class MainWindow(QWidget):
         self.trees_view = TreesView()
         self.searchs_view = SearchsView()
         self.statistics_view = StatisticsView()
+        self.about_view = AboutView()
 
         # Añadir las vistas al área principal, pero ocultarlas inicialmente
         self.main_area_layout.addWidget(self.arrangements_view)
@@ -75,11 +78,13 @@ class MainWindow(QWidget):
         self.main_area_layout.addWidget(self.trees_view)
         self.main_area_layout.addWidget(self.searchs_view)
         self.main_area_layout.addWidget(self.statistics_view)
+        self.main_area_layout.addWidget(self.about_view)
         self.arrangements_view.hide()
         self.queue_stacks_view.hide()
         self.trees_view.hide()
         self.searchs_view.hide()
-        self.statistics_view.hide()        
+        self.statistics_view.hide()
+        self.about_view.hide()   
 
         # Aplicar estilos CSS
         self.apply_styles()
@@ -106,6 +111,10 @@ class MainWindow(QWidget):
     def show_statistics_view(self):
         self.hide_all_views()
         self.statistics_view.show()
+    
+    def show_about_view(self):
+        self.hide_all_views()
+        self.about_view.show()
 
     def hide_all_views(self):
         self.arrangements_view.hide()
@@ -113,6 +122,7 @@ class MainWindow(QWidget):
         self.trees_view.hide()
         self.searchs_view.hide()
         self.statistics_view.hide()
+        self.about_view.hide()
         
     def capture_screen(self):
         save_screenshot(self)
