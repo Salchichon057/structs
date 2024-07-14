@@ -8,6 +8,7 @@ from views.queue_stacks_view import QueueStacksView
 from views.trees_view import TreesView
 from views.searchs_view import SearchsView
 from views.statiscs_view import StatisticsView
+from data.data_saver import save_screenshot
 
 class MainWindow(QWidget):
     def __init__(self):
@@ -34,6 +35,7 @@ class MainWindow(QWidget):
         sidebar_box_layout.addWidget(create_button('Árboles', self.show_trees_view))
         sidebar_box_layout.addWidget(create_button('Búsquedas', self.show_searchs_view))
         sidebar_box_layout.addWidget(create_button('Estadística Descriptiva', self.show_statistics_view))
+        sidebar_box_layout.addWidget(create_button('Capturar Pantalla', self.capture_screen))
 
         spacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
         sidebar_box_layout.addItem(spacer)
@@ -104,10 +106,11 @@ class MainWindow(QWidget):
         self.trees_view.hide()
         self.searchs_view.hide()
         self.statistics_view.hide()
+        
+    def capture_screen(self):
+        save_screenshot(self)
 
 app = QApplication(sys.argv)
 window = MainWindow()
 window.show()
 sys.exit(app.exec())
-
-# TODO Agregar un botón de estadística descriptiva donde habrá un input para ingresar datos, datos aleatorios y de excel, y mostrará la media, mediana, moda, rango, varianza, desviación estándar, coeficiente de variación, cuartiles, deciles y percentiles
