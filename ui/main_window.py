@@ -41,7 +41,6 @@ class MainWindow(QWidget):
         spacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
         sidebar_box_layout.addItem(spacer)
         
-        # Agregar una imagen que es mi logo de la universidad en el sidebar
         self.logo = QLabel()
         self.logo.setPixmap(self.create_non_transparent_pixmap('./assets/logo.png', 200, 200))
         self.logo.setAlignment(Qt.AlignmentFlag.AlignCenter)
