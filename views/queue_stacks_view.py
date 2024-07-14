@@ -5,7 +5,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from scripts.queue_stacks.stack import Stack
 from scripts.queue_stacks.queue import Queue
-from ui.components import create_button  # Importa la función create_button
+from ui.components import create_button
 
 class Visualizer:
     def __init__(self, canvas):

@@ -3,7 +3,7 @@ import string
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QTextEdit, QLabel, QComboBox, QSizePolicy, QMessageBox
 from ui.components import create_button
 from data.data_loader import load_data
-from data.data_saver import save_sorted_data  # Asegúrate de importar save_sorted_data
+from data.data_saver import save_sorted_data
 from scripts.sortings.sorting_algorithms_numeric import (
     bubble_sort,
     insertion_sort,
@@ -31,7 +31,7 @@ class ArrangementsView(QWidget):
 
         layout = QVBoxLayout(self)
 
-        # Botones "Datos Aleatorios" y "Ordenar"
+        # * Botones "Datos Aleatorios" y "Ordenar"
         buttons_layout = QHBoxLayout()
         self.input_type_combo = QComboBox()
         self.input_type_combo.addItems([
@@ -47,14 +47,14 @@ class ArrangementsView(QWidget):
         self.sort_button.setVisible(False)
         buttons_layout.addWidget(self.sort_button)
 
-        # Añadir botón para descargar datos
+        # * Añadir botón para descargar datos
         self.download_button = create_button('Descargar Datos', self.download_data)
         self.download_button.setVisible(False)
         buttons_layout.addWidget(self.download_button)
 
         layout.addLayout(buttons_layout)
 
-        # ComboBox para seleccionar el tipo de datos aleatorios
+        # * ComboBox para seleccionar el tipo de datos aleatorios
         self.random_data_type_combo = QComboBox()
         self.random_data_type_combo.addItems([
             'Seleccionar Tipo de Datos Aleatorios',
@@ -66,7 +66,7 @@ class ArrangementsView(QWidget):
         self.random_data_type_combo.setVisible(False)
         layout.addWidget(self.random_data_type_combo)
 
-        # ComboBox para seleccionar la forma de generar datos numéricos
+        # * ComboBox para seleccionar la forma de generar datos numéricos
         self.numeric_data_type_combo = QComboBox()
         self.numeric_data_type_combo.addItems([
             'Seleccionar Forma de Generar',
@@ -77,23 +77,23 @@ class ArrangementsView(QWidget):
         self.numeric_data_type_combo.setVisible(False)
         layout.addWidget(self.numeric_data_type_combo)
 
-        # Botón para generar datos aleatorios
+        # * Botón para generar datos aleatorios
         self.generate_button = create_button('Generar Datos', self.generate_random_data)
         self.generate_button.setVisible(False)
         layout.addWidget(self.generate_button)
 
-        # Input para datos
+        # * Input para datos
         self.input_button = create_button('Seleccionar Archivo', self.load_data)
         self.input_button.setVisible(False)
         layout.addWidget(self.input_button)
 
-        # Campo de texto para ingresar datos manualmente
+        # * Campo de texto para ingresar datos manualmente
         self.manual_input = QTextEdit()
         self.manual_input.setVisible(False)
         self.manual_input.setMinimumHeight(30)
         layout.addWidget(self.manual_input)
 
-        # Output de datos
+        # * Output de datos
         self.unsorted_data_label = QLabel('Datos Desordenados')
         self.unsorted_data_label.setVisible(False)
         layout.addWidget(self.unsorted_data_label)
@@ -119,7 +119,7 @@ class ArrangementsView(QWidget):
         self.sort_type_label.setVisible(False)
         layout.addWidget(self.sort_type_label)
 
-        # ComboBox de selección de algoritmos en el área dinámica
+        # * ComboBox de selección de algoritmos en el área dinámica
         self.sort_combo = QComboBox()
         self.sort_combo.addItems([
             'Bubble Sort',

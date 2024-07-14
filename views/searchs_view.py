@@ -9,43 +9,43 @@ class SearchsView(QWidget):
 
         layout = QVBoxLayout(self)
 
-        # ComboBox para seleccionar el tipo de datos
+        # * ComboBox para seleccionar el tipo de datos
         self.data_type_combo = QComboBox()
         self.data_type_combo.addItems(['Seleccionar Tipo de Datos', 'Generar Datos Aleatorios', 'Ingresar Datos Manualmente'])
         self.data_type_combo.currentIndexChanged.connect(self.update_input_area)
         layout.addWidget(self.data_type_combo)
 
-        # ComboBox para seleccionar el tipo de búsqueda
+        # * ComboBox para seleccionar el tipo de búsqueda
         self.search_type_combo = QComboBox()
         self.search_type_combo.addItems(['Seleccionar Tipo de Búsqueda', 'Búsqueda Binaria', 'Búsqueda Lineal'])
         self.search_type_combo.setVisible(False)
         layout.addWidget(self.search_type_combo)
 
-        # Botón para realizar la búsqueda
+        # * Botón para realizar la búsqueda
         self.search_button = create_button('Buscar', self.search_data)
         self.search_button.setVisible(False)
         layout.addWidget(self.search_button)
 
-        # Input para datos
+        # * Input para datos
         self.input_button = create_button('Generar Datos', self.generate_random_data)
         self.input_button.setVisible(False)
         layout.addWidget(self.input_button)
 
-        # Campo de texto para ingresar datos manualmente
+        # * Campo de texto para ingresar datos manualmente
         self.manual_input = QTextEdit()
         self.manual_input.setPlaceholderText('Ingrese los datos, separados por comas')
         self.manual_input.setVisible(False)
         self.manual_input.setStyleSheet("QTextEdit { min-height: 30px; max-height: 30px; }")
         layout.addWidget(self.manual_input)
 
-        # Campo de texto para ingresar el dato a buscar
+        # * Campo de texto para ingresar el dato a buscar
         self.search_input = QTextEdit()
         self.search_input.setPlaceholderText('Ingrese el dato a buscar')
         self.search_input.setVisible(False)
         self.search_input.setStyleSheet("QTextEdit { min-height: 30px; max-height: 30px; }")
         layout.addWidget(self.search_input)
 
-        # Output de datos
+        # * Output de datos
         self.unsorted_data_label = QLabel('Datos Desordenados')
         self.unsorted_data_label.setVisible(False)
         layout.addWidget(self.unsorted_data_label)
@@ -79,7 +79,6 @@ class SearchsView(QWidget):
         self.search_result.setStyleSheet("QTextEdit { min-height: 70px; max-height: 70px; }")
         layout.addWidget(self.search_result)
 
-        # Agregar espaciador
         layout.addSpacerItem(QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding))
 
         self.setLayout(layout)
